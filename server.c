@@ -21,25 +21,22 @@ void	handler(int signum)
 	static int				i;
 	static unsigned char	c;
 
-	c = 0;
 	c <<= 1;
-	c += (signum == SIGUSR1);
-	printf("%d\n", i);
+	c = c + (signum == SIGUSR1);
 	if (++i == 8)
 	{
-		write(1, "e", 1);
 		write(1, &c, 1);
 		i = 0;
 		c = 0;
 	}
-	
+
 }
 
 int	main(void)
 {
 	struct sigaction	action;
 	int					pid;
-	
+
 	pid = getpid();
 	action.sa_handler = handler;
 	ft_printf("PID : %d\n", pid);

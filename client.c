@@ -43,8 +43,7 @@ void	ft_sender(pid_t pid, char c)
 {
 	int	i;
 
-	i = 128;//0100 0000
-			//0110 0111
+	i = 128;
 	while (i)
 	{
 		if (c & i)
@@ -62,18 +61,16 @@ int	main(int ac, char **av)
 	int		i;
 	pid_t	pid;
 
-	(void)ac;
 	i = 0;
 	pid = ft_atoi(av[1]);
-	/* if (ac != 3)
+	if (ac != 3)
 	{
 		write(1, "client takes 3 args",20);
 		exit(EXIT_FAILURE);
-	} */
-	ft_sender(pid, 'g');
-	/* while (av[2][i])
+	}
+	while (av[2][i])
 	{
 		ft_sender(pid, av[2][i]);
 		i++;
-	} */
+	}
 }
