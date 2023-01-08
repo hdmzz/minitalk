@@ -39,6 +39,12 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+void	listner(int signum)
+{
+	if (signum == SIGUSR2)
+		write(1, "Message received!\n", 18);
+}
+
 void	ft_sender(pid_t pid, char c)
 {
 	int	i;
@@ -55,17 +61,18 @@ void	ft_sender(pid_t pid, char c)
 	}
 }
 
-
 int	main(int ac, char **av)
 {
 	int		i;
 	pid_t	pid;
 
 	i = 0;
+	signal(SIGUSR2, &listner);
 	pid = ft_atoi(av[1]);
+	printf("%d\n", getpid());
 	if (ac != 3)
 	{
-		write(1, "client takes 3 args",20);
+		write(1, "client takes 3 args", 20);
 		exit(EXIT_FAILURE);
 	}
 	while (av[2][i])
@@ -73,4 +80,6 @@ int	main(int ac, char **av)
 		ft_sender(pid, av[2][i]);
 		i++;
 	}
+	while (1)
+		pause();
 }
