@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
+#include "minitalk.h"
 
 int	ft_atoi(const char *str)
 {
@@ -69,7 +67,6 @@ int	main(int ac, char **av)
 	i = 0;
 	signal(SIGUSR2, &listner);
 	pid = ft_atoi(av[1]);
-	printf("%d\n", getpid());
 	if (ac != 3)
 	{
 		write(1, "client takes 3 args", 20);
