@@ -6,11 +6,12 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:39 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/04 15:35:22 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/12 09:58:06 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
@@ -37,12 +38,6 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-void	listner(int signum)
-{
-	if (signum == SIGUSR2)
-		write(1, "Message received!\n", 18);
-}
-
 void	ft_sender(pid_t pid, char c)
 {
 	int	i;
@@ -55,7 +50,16 @@ void	ft_sender(pid_t pid, char c)
 		else if ((c & i) == 0)
 			kill(pid, SIGUSR2);
 		i >>= 1;
-		usleep(500);
+		usleep(50);
+	}
+}
+
+void	listener(int signum)
+{
+	if (signum == SIGUSR1)
+	{
+		write(1, "message bien recu", 18);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -65,8 +69,8 @@ int	main(int ac, char **av)
 	pid_t	pid;
 
 	i = 0;
-	signal(SIGUSR2, &listner);
 	pid = ft_atoi(av[1]);
+	signal(SIGUSR1, &listener);
 	if (ac != 3)
 	{
 		write(1, "client takes 3 args", 20);
@@ -77,6 +81,5 @@ int	main(int ac, char **av)
 		ft_sender(pid, av[2][i]);
 		i++;
 	}
-	while (1)
-		pause();
+	ft_sender(pid, '\n');
 }

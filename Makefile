@@ -1,3 +1,5 @@
+NAME = client
+NAMESV = server
 SERVER_SRCS		= server.c
 CLIENT_SRCS		= client.c
 HEADER			= minitalk
@@ -7,16 +9,16 @@ CFLAGS		= -Wall -Wextra -Werror
 %.o : %.c $(HEADER) ft_printf/libftprintf.a
 	$(CC) $< -c -o $@
 
-all:		ft_printf server client
+all:		ft_printf $(NAMESV) $(NAME)
 
 ft_printf:
 			@make -C ft_printf
 
-server:		$(SERVER_SRCS:.c=.o) 
-				$(CC) $(CFLAGS) $(SERVER_SRCS) -L. ft_printf/libftprintf.a -o server
+$(NAME):		$(CLIENT_SRCS:.c=.o) 
+				$(CC)  $(CLIENT_SRCS)  -o $(NAME)
 
-client:		$(CLIENT_SRCS:.c=.o) 
-				$(CC)  $(CLIENT_SRCS)  -o client
+$(NAMESV):		$(SERVER_SRCS:.c=.o)
+				$(CC) $(CFLAGS) $(SERVER_SRCS) -L. ft_printf/libftprintf.a -o $(NAMESV)
 
 clean:
 			rm -drf $(SERVER_SRCS:.c=.o) $(CLIENT_SRCS:.c=.o)
