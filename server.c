@@ -13,6 +13,8 @@
 #include "minitalk.h"
 #include <stdio.h>
 
+
+
 void	handler(int signum, siginfo_t *info, void *other)
 {
 	static int				i;

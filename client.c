@@ -58,8 +58,8 @@ void	listener(int signum)
 {
 	if (signum == SIGUSR1)
 	{
-		write(1, "message bien recu", 18);
-		exit(EXIT_FAILURE);
+		write(1, "message bien recu\n", 19);
+		exit(EXIT_SUCCESS);
 	}
 }
 
