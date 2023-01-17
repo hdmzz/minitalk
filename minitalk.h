@@ -6,7 +6,7 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:28:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:41:05 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:59:34 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	unsigned char	c;
 	struct s_list	*next;

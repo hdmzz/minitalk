@@ -6,16 +6,16 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:39 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:11:16 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:59:08 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h>
 
-int	control = 0;
+int	g_control = 0;
 
-int	ft_atoi(const char *str)
+int	ft_toi(const char *str)
 {
 	long long	res;
 	int			sign;
@@ -47,13 +47,13 @@ void	ft_sender(pid_t pid, char c)
 	i = 128;
 	while (i)
 	{
-		control = 0;
+		g_control = 0;
 		if (c & i)
 			kill(pid, SIGUSR1);
 		else if ((c & i) == 0)
 			kill(pid, SIGUSR2);
 		i >>= 1;
-		while (control != 1)
+		while (g_control != 1)
 			usleep(10);
 	}
 }
@@ -61,7 +61,7 @@ void	ft_sender(pid_t pid, char c)
 void	listener(int signum)
 {
 	if (signum == SIGUSR2)
-		control = 1;
+		g_control = 1;
 	if (signum == SIGUSR1)
 	{
 		write(1, "message bien recu\n", 19);
