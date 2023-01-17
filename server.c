@@ -6,12 +6,17 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:32 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:32:12 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:31:57 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
+
+void	ft_error(int signum)
+{
+	ft_printf("Cant't send si to pid %d", signum);
+	exit(EXIT_FAILURE);
+}
 
 void	ft_free(t_list **lst)
 {
@@ -35,6 +40,8 @@ void	handler(int signum, siginfo_t *info, void *other)
 	static t_list			*list = NULL;
 
 	(void)other;
+	if (kill(info->si_pid, 0) < 0)
+		ft_error(info->si_pid);
 	c <<= 1;
 	c += (signum == SIGUSR1);
 	if ((++i == 8))

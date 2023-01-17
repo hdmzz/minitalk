@@ -6,16 +6,15 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:39 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:59:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:24:54 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
 
 int	g_control = 0;
 
-int	ft_toi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long long	res;
 	int			sign;
@@ -47,6 +46,11 @@ void	ft_sender(pid_t pid, char c)
 	i = 128;
 	while (i)
 	{
+		if (kill(pid, 0) < 0)
+		{
+			ft_printf("Can't send to PID %d", pid);
+			exit(EXIT_FAILURE);
+		}
 		g_control = 0;
 		if (c & i)
 			kill(pid, SIGUSR1);
@@ -74,15 +78,20 @@ int	main(int ac, char **av)
 	int		i;
 	pid_t	pid;
 
-	i = 0;
-	pid = ft_atoi(av[1]);
-	signal(SIGUSR1, &listener);
-	signal(SIGUSR2, &listener);
 	if (ac != 3)
 	{
 		write(1, "client takes 3 args", 20);
 		exit(EXIT_FAILURE);
 	}
+	i = 0;
+	pid = ft_atoi(av[1]);
+	if (!pid)
+	{
+		ft_printf("PID invalid\n");
+		exit(EXIT_FAILURE);
+	}
+	signal(SIGUSR1, &listener);
+	signal(SIGUSR2, &listener);
 	while (av[2][i])
 	{
 		ft_sender(pid, av[2][i]);

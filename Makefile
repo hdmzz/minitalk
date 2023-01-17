@@ -7,7 +7,7 @@ HEADER		= minitalk
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
 
-%.o : %.c $(HEADER) ft_printf/libftprintf.a
+%.o : %.c $(HEADER) ft_printf/libftprintf.a Makefile
 	$(CC) $< -c -o $@
 
 all:		ft_printf $(NAMESV) $(NAME)
@@ -16,7 +16,7 @@ ft_printf:
 			@make -C ft_printf
 
 $(NAME):	$(CLIENT_SRCS:.c=.o)
-			$(CC)  $(CLIENT_SRCS)  -o $(NAME)
+			$(CC)  $(CLIENT_SRCS) -L. ft_printf/libftprintf.a -o $(NAME)
 
 $(NAMESV):	$(SERVER_SRCS:.c=.o) $(SRCS:.c=.o)
 			$(CC) $(CFLAGS) $(SRCS) $(SERVER_SRCS) -L. ft_printf/libftprintf.a -o $(NAMESV)
