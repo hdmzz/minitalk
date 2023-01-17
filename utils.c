@@ -6,42 +6,61 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:30:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/13 09:49:33 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:22:04 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_initlist(void)
 {
 	t_list	*new;
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		return (NULL);
-	new->content = content;
+	return (NULL);
 	new->next = NULL;
 	return (new);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+void	print_list(t_list *list)
 {
-	if (lst)
-		while (lst->next)
-			lst = lst->next;
-	return (lst);
+	t_list	*current;
+
+	current = list;
+	while (current)
+	{
+		ft_printf("%c", current->c);
+		current = current->next;
+	}
+	ft_printf("\n");
 }
 
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list	*ft_lstlast(t_list *list)
 {
 	t_list	*last;
 
-	if (*lst)
+	last = list;
+	while (last->next)
+		last = last->next;
+	return (last);
+}
+
+void	ft_insert(t_list **list, unsigned char to_add)
+{
+	t_list	*new;
+	t_list	*last;
+
+	if (!(*list)->c && !(*list)->next)
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
+		(*list)->c = to_add;
+		return ;
 	}
-	else if (!*lst)
-		*lst = new;
+	new = malloc(sizeof(t_list));
+	last = ft_lstlast(*list);
+	if (!new || !last)
+		exit(EXIT_FAILURE);
+	new->next = NULL;
+	new->c = to_add;
+	last->next = new;
 }

@@ -6,28 +6,48 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:32 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/13 11:52:16 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:53:37 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <stdio.h>
 
+void	ft_free(t_list **lst)
+{
+	t_list	*temp;
+	t_list	*curr;
 
+	curr = *lst;
+	while (curr)
+	{
+		temp = curr;
+		curr = curr->next;
+		free(temp);
+	}
+	*lst = NULL;
+}
 
 void	handler(int signum, siginfo_t *info, void *other)
 {
 	static int				i;
 	static unsigned char	c;
+	static t_list			*list = NULL;
 
 	(void)other;
+	if (!list)
+		list = ft_initlist();
 	c <<= 1;
 	c += (signum == SIGUSR1);
 	if ((++i == 8) && c)
 	{
-		write(1, &c, 1);
+		ft_insert(&list, c);
 		if (c == '\n')
+		{
 			kill(info->si_pid, SIGUSR1);
+			print_list(list);
+			ft_free(&list);
+		}
 		i = 0;
 		c = 0;
 	}
