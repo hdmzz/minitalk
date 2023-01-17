@@ -6,7 +6,7 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:28:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 13:33:41 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:41:05 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_list
 
 void	ft_insert(t_list **list, unsigned char to_add);
 void	print_list(t_list *list);
-t_list	*ft_initlist(unsigned char c);
+t_list	*ft_initlist(unsigned char to_add);
 t_list	*ft_lstlast(t_list *list);
 
 #endif

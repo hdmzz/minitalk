@@ -6,22 +6,22 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:30:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 13:32:46 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:42:03 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-t_list	*ft_initlist(unsigned char c)
+t_list	*ft_initlist(unsigned char to_add)
 {
 	t_list	*new;
 
 	new = malloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
-	new->c = c;
+	new->c = to_add;
 	new->next = NULL;
-	return (new);
+	return  (new);
 }
 
 void	print_list(t_list *list)
@@ -52,16 +52,16 @@ void	ft_insert(t_list **list, unsigned char to_add)
 	t_list	*new;
 	t_list	*last;
 
-	if (!(*list)->c && !(*list)->next)
+	if (!(*list))
+		*list = ft_initlist(to_add);
+	else
 	{
-		(*list)->c = to_add;
-		return ;
+		new = malloc(sizeof(t_list));
+		last = ft_lstlast(*list);
+		if (!new || !last)
+			exit(EXIT_FAILURE);
+		new->next = NULL;
+		new->c = to_add;
+		last->next = new;
 	}
-	new = malloc(sizeof(t_list));
-	last = ft_lstlast(*list);
-	if (!new || !last)
-		exit(EXIT_FAILURE);
-	new->next = NULL;
-	new->c = to_add;
-	last->next = new;
 }

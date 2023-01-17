@@ -6,7 +6,7 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:32 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:09:46 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:32:12 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ void	handler(int signum, siginfo_t *info, void *other)
 	if ((++i == 8))
 	{
 		if (c)
-		{
-			if (!list)
-				list = ft_initlist(c);
-			else
-				ft_insert(&list, c);
-		}
+			ft_insert(&list, c);
 		if (!c)
 		{
 			kill(info->si_pid, SIGUSR1);
