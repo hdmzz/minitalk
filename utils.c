@@ -6,19 +6,20 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 09:30:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 13:25:22 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:32:46 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-t_list	*ft_initlist(void)
+t_list	*ft_initlist(unsigned char c)
 {
 	t_list	*new;
 
 	new = malloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
+	new->c = c;
 	new->next = NULL;
 	return (new);
 }
