@@ -6,12 +6,12 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:46:33 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/19 13:47:25 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:49:38 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 # include <signal.h>
 # include <unistd.h>
 # include "ft_printf/ft_printf.h"

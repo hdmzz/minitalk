@@ -20,7 +20,7 @@ ft_printf:
 			@make -C ft_printf
 
 $(NAME):	$(CLIENT_SRCS:.c=.o)
-			$(CC) $(CLIENT_SRCS) -L. ft_printf/libftprintf.a -o $(NAME)
+			$(CC) $(CFLAGS) $(CLIENT_SRCS) -L. ft_printf/libftprintf.a -o $(NAME)
 
 $(NAMESV):	$(SERVER_SRCS:.c=.o) $(SRCS:.c=.o)
 			$(CC) $(CFLAGS) $(SRCS) $(SERVER_SRCS) -L. ft_printf/libftprintf.a -o $(NAMESV)
@@ -28,10 +28,10 @@ $(NAMESV):	$(SERVER_SRCS:.c=.o) $(SRCS:.c=.o)
 bonus:	ft_printf server_bonus client_bonus
 
 server_bonus:	$(SERVER_BONUS_SRCS:.c=.o) $(BONUS_SRCS:.c=.o)
-				$(CC) $(CFLAGS) $(BONUS_SRCS) $(SERVER_BONUS_SRCS) -L. ft_printf/libftprintf.a -o server_bonus
+				$(CC) $(CFLAGS) $(BONUS_SRCS) $(SERVER_BONUS_SRCS) -L. ft_printf/libftprintf.a -o server
 
 client_bonus:	$(CLIENT_BONUS_SRCS:.c=.o)
-				$(CC) $(CFLAGS) $(CLIENT_BONUS_SRCS) -L. ft_printf/libftprintf.a -o client_bonus
+				$(CC) $(CFLAGS) $(CLIENT_BONUS_SRCS) -L. ft_printf/libftprintf.a -o client
 
 clean:
 			rm -drf $(SERVER_SRCS:.c=.o) $(CLIENT_SRCS:.c=.o) $(SRCS:.c=.o) $(SERVER_BONUS_SRCS:.c=.o) $(CLIENT_BONUS_SRCS:.c=.o) $(BONUS_SRCS:.c=.o)
@@ -44,4 +44,3 @@ fclean:	clean
 re:			fclean all
 
 .PHONY:		all ft_printf clean fclean re
-

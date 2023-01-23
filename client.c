@@ -6,7 +6,7 @@
 /*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:39 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 17:24:54 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:54:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int ac, char **av)
 	}
 	i = 0;
 	pid = ft_atoi(av[1]);
-	if (!pid)
+	if (!pid || pid < 0)
 	{
 		ft_printf("PID invalid\n");
 		exit(EXIT_FAILURE);
