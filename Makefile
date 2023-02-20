@@ -7,8 +7,8 @@ CLIENT_BONUS_SRCS	= client_bonus.c
 SERVER_BONUS_SRCS	=server_bonus.c
 BONUS_SRCS			= utils_bonus.c
 
-HEADER		= minitalk
-CC			= clang
+HEADER		= minitalk.h
+CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
 %.o : %.c $(HEADER) ft_printf/libftprintf.a Makefile

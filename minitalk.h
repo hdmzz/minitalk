@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:28:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/17 15:59:34 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:24:34 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 # include <signal.h>
+#include <sys/types.h>
 # include <unistd.h>
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>

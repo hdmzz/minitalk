@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:05:39 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/01/23 11:54:19 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/02/20 09:56:14 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		write(1, "client takes 3 args", 20);
+		write(1, "client takes 2 args\n", 21);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
